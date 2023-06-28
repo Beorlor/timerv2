@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#ffc40d">
+    <meta name="msapplication-config" content="favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="loading">
+        <h2>Loading...</h2>
+    </div>
+    <div id="grid-container">
+        <div id="grid_timer">
+            <h1 id="timer-display" class="">Loading...</h1>
+            <button id="reset-button">Reset Timer</button>
+        </div>
+        <div id="name">Composter Timer
+            <div id="rules" class="hidden">
+                <ul>
+                    <li class="regle">Reset timer quand on refill personnellement</li>
+                    <li class="regle">Submit un changement de lv seulement en dessous de 75% du refill</li>
+                    <li class="regle">Submit va Reset le timer !!</li>
+                    <li class="regle">Submit ou Reset va enregister les golds produit lors du refill et les ajouter au total</li>
+                    <li class="regle">Si pour quelque raison, on ne veut pas add les golds mais Reset le timer, aller sur v1.skyblockdata.fr et reset le timer là bas</li>
+                </ul>
+            </div>
+        </div>
+        <div id="light_dark">
+            <div id="switch" class="theme-toggle"></div>
+        </div>
+        <div id="production">
+            <div id="production_grid_container">
+                <div id="production-c1"><img class="medium-img" src="img/Compost.webp" alt="compost"></div>
+                <div id="production-ph1">
+                    <p>pH :</p>
+                </div>
+                <div id="production-num1" class="production-bold">
+                    <p></p>
+                </div>
+
+                <div id="production-c2"><img class="medium-img" src="img/Compost.webp" alt="compost"></div>
+                <div id="production-pf1">
+                    <p>pF :</p>
+                </div>
+                <div id="production-num2" class="production-bold">
+                    <p></p>
+                </div>
+
+                <div id="production-g1"><img class="medium-coins-img" src="img/coins.png" alt="coins"></div>
+                <div id="production-ph2">
+                    <p>pH :</p>
+                </div>
+                <div id="production-num3" class="production-bold">
+                    <p></p>
+                </div>
+
+                <div id="production-g2"><img class="medium-coins-img" src="img/coins.png" alt="coins"></div>
+                <div id="production-pf2">
+                    <p>pF :</p>
+                </div>
+                <div id="production-num4" class="production-bold">
+                    <p></p>
+                </div>
+
+                <div id="production-currentg"><img class="medium-coins-img" src="img/coins.png" alt="coins"></div>
+                <div id="production-add">
+                    <p>Add :</p>
+                </div>
+                <div id="production-num5" class="production-bold">
+                    <p></p>
+                </div>
+
+                <div id="production-totalg"><img class="medium-coins-img" src="img/coins.png" alt="coins"></div>
+                <div id="production-total">
+                    <p>Total :</p>
+                </div>
+                <div id="production-num6" class="production-bold">
+                    <p></p>
+                </div>
+            </div>
+        </div>
+        <div id="composter">
+            <div id="name-composter">Composter</div>
+            <div id="display-composter">
+                <div id="composter-container">
+                    <img id="composter-img" src="img/Composter.webp" alt="composter">
+                    <div id="hover-text_composter">%</div>
+                </div>
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img id="cropmeter1" class="dark_glass" src="img/lime_stained_glass.png" alt="black_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img id="fuelmeter1" class="dark_glass" src="img/lime_stained_glass.png" alt="lime_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img id="cropmeter2" class="dark_glass" src="img/lime_stained_glass.png" alt="lime_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img id="fuelmeter2" class="dark_glass" src="img/lime_stained_glass.png" alt="lime_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img id="cropmeter3" class="dark_glass" src="img/lime_stained_glass.png" alt="lime_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img id="fuelmeter3" class="dark_glass" src="img/lime_stained_glass.png" alt="lime_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img id="cropmeter4" class="dark_glass" src="img/lime_stained_glass.png" alt="lime_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img id="fuelmeter4" class="dark_glass" src="img/lime_stained_glass.png" alt="lime_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img id="cropmeter5" class="dark_glass" src="img/lime_stained_glass.png" alt="lime_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img id="fuelmeter5" class="dark_glass" src="img/lime_stained_glass.png" alt="lime_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img id="cropmeter" class="dark_glass" src="img/potato.png" alt="cropmeter">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+                <img id="fuelmeter" class="dark_glass" src="img/Oil_Barrel.webp" alt="fuelmeter">
+                <img class="dark_glass" src="img/black_stained_glass.png" alt="black_stained_glass">
+            </div>
+        </div>
+        <div id="grid_submit">
+            <form>
+                <label class="label_submit">
+                    <span id="speed">Loading...</span>
+                    <input id='speedInput' type="number" min="1" max="25" inputmode="numeric" class="input_case">
+                </label>
+                <label class="label_submit">
+                    <span id="multiDrop">Loading...</span>
+                    <input id='multiDropInput' type="number" min="1" max="25" inputmode="numeric" class="input_case">
+                </label>
+                <label class="label_submit">
+                    <span id="fuel">Loading...</span>
+                    <input id='fuelInput' type="number" min="1" max="25" inputmode="numeric" class="input_case">
+                </label>
+                <label class="label_submit">
+                    <span id="biomass">Loading...</span>
+                    <input id='biomassInput' type="number" min="1" max="25" inputmode="numeric" class="input_case">
+                </label>
+                <label class="label_submit">
+                    <span id="c_Reduction">Loading...</span>
+                    <input id='c_ReductionInput' type="number" min="1" max="25" inputmode="numeric" class="input_case">
+                </label>
+                <button id='submitButton' type="button">Submit</button>
+            </form>
+        </div>
+        <div id="price">
+            <div id="price1" class="grid-price">
+                <img src="img/Compost.webp" alt="Compost" class="price_img_big">
+                <span id="1compost" class="number">x1 : <strong>4k</strong></span>
+                <img src="img/coins.png" alt="Coins" class="coins">
+                <span id="64compost" class="number">x64 : <strong>4k</strong></span>
+                <img src="img/coins.png" alt="Coins" class="coins">
+                <span id="PFcompost" class="number">PF : <strong>4k</strong></span>
+                <img src="img/coins.png" alt="Coins" class="coins">
+            </div>
+            <div id="price2" class="grid-price">
+                <img src="img/Box_of_Seeds.webp" alt="Box of Seed" class="price_img_big">
+                <span id="1bos" class="number">x1 : <strong>4k</strong></span>
+                <img src="img/coins.png" alt="Coins" class="coins">
+                <span id="64bos" class="number">x64 : <strong>4k</strong></span>
+                <img src="img/coins.png" alt="Coins" class="coins">
+                <span id="PFbos" class="number">PF : <strong>4k</strong></span>
+                <img src="img/coins.png" alt="Coins" class="coins">
+            </div>
+            <div id="price3" class="grid-price">
+                <img src="img/Oil_Barrel.webp" alt="Oil Barrel" class="price_img_big">
+                <span id="1ob" class="number">x1 : <strong>4k</strong></span>
+                <img src="img/coins.png" alt="Coins" class="coins">
+                <span id="64ob" class="number">x64 : <strong>4k</strong></span>
+                <img src="img/coins.png" alt="Coins" class="coins">
+                <span id="PFob" class="number">PF : <strong>4k</strong></span>
+                <img src="img/coins.png" alt="Coins" class="coins">
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

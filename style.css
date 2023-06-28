@@ -1,0 +1,703 @@
+:root {
+    --clr-bg1: #45aa0b;
+    --clr-bg2: #F3F3F3;
+    --clr-text: #000000;
+    --clr-title: #006400;
+    --clr-accent: #00FFFF;
+    --clr-accent_hover: #0fa3a3;
+    --clr-bg_input: rgb(243 244 246);
+}
+
+.dark-mode {
+    --clr-bg1: #45aa0b;
+    --clr-bg2: #2F4F4F;
+    --clr-text: #ebebeb;
+    --clr-title: #1e941e;
+    --clr-accent: #008585;
+    --clr-accent_hover: #0fa3a3;
+    --clr-bg_input: rgb(107 114 128);
+}
+
+body {
+    min-height: 100vh;
+    /* Top half light gray, bottom half dark gray */
+    background-image: url("./img/Barn.png"), linear-gradient(45deg, var(--clr-bg1), var(--clr-bg2) 50%, var(--clr-bg2) 100%);
+    background-position: center, center;
+    background-repeat: no-repeat, repeat;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--clr-bg2);
+    color: var(--clr-title);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#grid-container {
+    display: grid;
+    grid-template-areas:
+        "grid_timer grid_timer grid_timer grid_timer name name name name name name name light_dark light_dark"
+        "grid_timer grid_timer grid_timer grid_timer name name name name name name name light_dark light_dark"
+        "grid_timer grid_timer grid_timer grid_timer composter composter composter composter composter composter grid_submit grid_submit grid_submit"
+        "production production production production composter composter composter composter composter composter grid_submit grid_submit grid_submit"
+        "production production production production composter composter composter composter composter composter grid_submit grid_submit grid_submit"
+        "production production production production composter composter composter composter composter composter grid_submit grid_submit grid_submit"
+        "production production production production composter composter composter composter composter composter grid_submit grid_submit grid_submit"
+        "production production production production price price price price price price price price price"
+        "production production production production price price price price price price price price price"
+        "production production production production price price price price price price price price price"
+        "production production production production price price price price price price price price price";
+    grid-template-columns: 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 1fr 1fr;
+    grid-template-rows: auto;
+    position: relative;
+    gap: 1rem;
+    height: 90vh;
+    width: 90%;
+}
+
+
+#grid_timer,
+#name,
+#light_dark,
+#production,
+#composter,
+#grid_submit,
+#price {
+    position: relative;
+    left: -100vw;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* TIMER AREA */
+#grid_timer {
+    grid-area: grid_timer;
+    border-radius: 20px 10px 10px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 0 1em;
+}
+
+#timer-display {
+    flex: 3;
+    text-align: center;
+    font-size: 2rem;
+    color: black;
+}
+
+#reset-button {
+    flex: 1;
+    cursor: pointer;
+    padding: 10px;
+    color: var(--clr-text);
+    background-color: var(--clr-accent);
+    border-color: transparent;
+    border-radius: 0.375rem;
+    text-align: center;
+}
+
+#reset-button:active {
+    background-color: var(--clr-accent_hover);
+}
+
+
+/* NAME AREA */
+#name {
+    grid-area: name;
+    border-radius: 10px 10px 10px 10px;
+    color: var(--clr-title);
+    font-size: calc(1rem + 2vw);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    white-space: nowrap;
+    position: relative;  /* Add relative position */
+}
+
+/* The "rules" div is hidden by default */
+#rules {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--clr-bg2);
+    padding: 10px;
+    border-radius: 10px;
+    display: none;
+    width: 100%;  /* Full width */
+    z-index: 200;
+}
+
+/* Show "rules" div when hovering over "name" div */
+#name:hover #rules {
+    display: block;
+}
+
+.regle {
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--clr-text);
+    text-align: left;
+}
+
+/* LIGHT_DARK AREA */
+#light_dark {
+    grid-area: light_dark;
+    border-radius: 10px 20px 10px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#switch {
+    position: relative;
+    width: 80%;
+    height: 80%;
+    background-image: url("./img/sun.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+}
+
+/* PRODUCTION AREA */
+#production {
+    grid-area: production;
+    border-radius: 10px 10px 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+#production_grid_container {
+    display: grid;
+    grid-template-areas:
+        "c1 ph1 num1"
+        "c2 pf1 num2"
+        "g1 ph2 num3"
+        "g2 pf2 num4"
+        "currentg add num5"
+        "totalg total num6";
+    grid-template-columns: 1fr 1fr 2fr; /* Adjust this line */
+    gap: 1rem; /* Adjust this line */
+    justify-content: center;
+    align-items: center; 
+    justify-items: center; 
+    width: 80%;
+    height: 100%;
+}
+
+#production-g1, 
+#production-g2, 
+#production-currentg, 
+#production-totalg {
+    padding-left: 0.5rem; /* Adjust this value as needed */
+}
+
+.medium-img {
+    width: 60%; /* or adjust as needed */
+    height: auto;
+}
+
+.medium-coins-img {
+    width: 45%; /* or adjust as needed */
+    height: auto;
+}
+
+.production-bold {
+    font-weight: 900;
+}
+
+#production-c1 {
+    grid-area: c1;
+}
+
+#production-ph1 {
+    grid-area: ph1;
+}
+
+#production-num1 {
+    grid-area: num1;
+}
+
+#production-c2 {
+    grid-area: c2;
+}
+
+#production-pf1 {
+    grid-area: pf1;
+}
+
+#production-num2 {
+    grid-area: num2;
+}
+
+#production-g1 {
+    grid-area: g1;
+}
+
+#production-ph2 {
+    grid-area: ph2;
+}
+
+#production-num3 {
+    grid-area: num3;
+}
+
+#production-g2 {
+    grid-area: g2;
+}
+
+#production-pf2 {
+    grid-area: pf2;
+}
+
+#production-num4 {
+    grid-area: num4;
+}
+
+#production-currentg {
+    grid-area: currentg;
+}
+
+#production-add {
+    grid-area: add;
+}
+
+#production-num5 {
+    grid-area: num5;
+}
+
+#production-totalg {
+    grid-area: totalg;
+}
+
+#production-total {
+    grid-area: total;
+}
+
+#production-num6 {
+    grid-area: num6;
+}
+
+
+/* COMPOSTER AREA */
+#composter {
+    grid-area: composter;
+    border-radius: 10px 10px 10px 10px;
+    display: grid;
+    grid-template-rows: 1fr 6fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "name"
+        "display";
+    height: 100%;
+}
+
+#name-composter {
+    color: var(--clr-text);
+    grid-area: name;
+    font-size: calc(1rem + 1vw);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+#display-composter {
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-columns: repeat(9, 1fr);
+    width: 80%;
+    height: 80%;
+    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1rem;
+}
+
+.dark_glass {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* ensures images maintain aspect ratio */
+}
+
+#composter-container {
+    position: absolute;
+    grid-row: 2 / 4;
+    grid-column: 4 / 6;
+    z-index: 1;
+    width: 27%;
+    height: 40%;
+}
+
+#composter-img {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    z-index: 50;
+}
+
+#hover-text_composter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 51;
+    font-size: 3rem;
+}
+
+#composter-container:hover #hover-text_composter {
+    opacity: 1;
+}
+
+/* SUBMIT AREA */
+#grid_submit {
+    grid-area: grid_submit;
+    border-radius: 10px 10px 10px 10px;
+
+}
+
+.label_submit {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: var(--clr-text);
+}
+
+.input_case {
+    display: block;
+    width: 90%;
+    margin-top: 0.25rem;
+    border-radius: 0.375rem;
+    background-color: var(--clr-bg_input);
+    border-color: transparent;
+    color: var(--clr-text);
+}
+
+.input_case:focus {
+    border-color: #6b7280;
+    background-color: var(--clr-bg_input);
+    outline: none;
+    box-shadow: none;
+    color: var(--clr-text);
+}
+
+#submitButton {
+    cursor: pointer;
+    display: block;
+    width: 50%;
+    padding: 0.5rem 1rem;
+    color: var(--clr-text);
+    background-color: var(--clr-accent);
+    border-color: transparent;
+    border-radius: 0.375rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    min-width: 100px;
+}
+
+#submitButton:active {
+    background-color: var(--clr-accent_hover);
+}
+
+
+#speedInput::placeholder {
+    font-style: italic;
+    color: var(--clr-text);
+}
+
+#speedInput {
+    padding-left: 1rem;
+    /* Adjust this value to your preference */
+}
+
+#multiDropInput::placeholder {
+    font-style: italic;
+    color: var(--clr-text);
+}
+
+#multiDropInput {
+    padding-left: 1rem;
+    /* Adjust this value to your preference */
+}
+
+#fuelInput::placeholder {
+    font-style: italic;
+    color: var(--clr-text);
+}
+
+#fuelInput {
+    padding-left: 1rem;
+    /* Adjust this value to your preference */
+}
+
+#biomassInput::placeholder {
+    font-style: italic;
+    color: var(--clr-text);
+}
+
+#biomassInput {
+    padding-left: 1rem;
+    /* Adjust this value to your preference */
+}
+
+#c_ReductionInput::placeholder {
+    font-style: italic;
+    color: var(--clr-text);
+}
+
+#c_ReductionInput {
+    padding-left: 1rem;
+    /* Adjust this value to your preference */
+}
+
+/* PRICE AREA */
+
+#price {
+    grid-area: price;
+    border-radius: 10px 10px 20px 10px;
+    display: grid;
+    grid-template-areas:
+        "compost boxofseed"
+        "oilbarrel free";
+    align-items: center;
+    gap: 2em;
+    /* changed to relative unit */
+}
+
+
+#price1 {
+    grid-area: compost;
+}
+
+#price2 {
+    grid-area: boxofseed;
+}
+
+#price3 {
+    grid-area: oilbarrel;
+}
+
+.grid-price {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    /* first column larger than others */
+    grid-auto-rows: min-content;
+    align-items: center;
+    gap: 0.5em;
+    /* changed to relative unit */
+    white-space: nowrap;
+}
+
+.price_img_big {
+    width: 2vw;
+    /* changed to relative unit */
+    height: auto;
+    max-width: 100%;
+    max-height: 2vw;
+    /* changed to relative unit */
+    min-width: 30px;
+    /* changed to relative unit */
+    min-height: 30px;
+    /* changed to relative unit */
+}
+
+.coins {
+    width: 1vw;
+    /* changed to relative unit */
+    height: auto;
+    max-width: 100%;
+    max-height: 1vw;
+    /* changed to relative unit */
+    min-width: 15px;
+    /* changed to relative unit */
+    min-height: 15px;
+    /* changed to relative unit */
+}
+
+.number {
+    margin: 0 0.5em;
+    /* changed to relative unit */
+}
+
+@keyframes slideIn {
+    from {
+        left: -100vw;
+    }
+
+    to {
+        left: 0;
+    }
+}
+
+@keyframes slideOut {
+    0% {
+        left: 0;
+    }
+
+    100% {
+        left: -100vw;
+    }
+}
+
+@keyframes slideInFromRight {
+    from {
+        left: 100vw;
+    }
+
+    to {
+        left: 0;
+    }
+}
+
+
+
+@media (max-width: 499px) {
+    #grid-container {
+        grid-template-areas:
+            "name light_dark"
+            "grid_timer grid_timer"
+            "production production"
+            "composter composter"
+            "price price"
+            "grid_submit grid_submit";
+        grid-template-columns: 3fr 1fr;
+        grid-template-rows: auto;
+        gap: 1rem;
+        position: relative;
+        height: 90vh;
+        width: 90%;
+        overflow: auto;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        height: calc(90vh - 50px);
+<<<<<<< HEAD
+=======
+    }
+    #composter {
+        height: 500px;
+>>>>>>> origin/master
+    }
+}
+
+@media (min-width: 500px) and (max-width: 800px) {
+    #grid-container {
+        grid-template-areas:
+            "name light_dark"
+            "grid_timer grid_timer"
+            "production production"
+            "composter composter"
+            "price price"
+            "grid_submit grid_submit";
+        grid-template-columns: 5fr 1fr;
+        grid-template-rows: auto;
+        gap: 1rem;
+        position: relative;
+        height: 90vh;
+        width: 90%;
+        overflow: auto;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        height: calc(90vh - 50px);
+<<<<<<< HEAD
+=======
+    }
+    #composter {
+        height: 500px;
+>>>>>>> origin/master
+    }
+}
+
+/* MEDIA QUERIES FOR PRICE AREA */
+@media (max-width: 430px) {
+    .grid-price {
+        gap: 0.25em;
+    }
+
+    .price_img_big {
+        width: 30px;
+        height: auto;
+        min-width: 30px;
+    }
+
+    .coins {
+        width: 15px;
+        height: auto;
+        min-width: 15px;
+    }
+
+    .number {
+        font-size: 70%;
+        /* Decrease the font size */
+    }
+}
+
+@media (max-width: 1250px) {
+    #price {
+        grid-template-areas:
+            "compost"
+            "boxofseed"
+            "oilbarrel";
+    }
+
+}
+<<<<<<< HEAD
+
+/*composter grid media query*/
+@media (min-width: 801px) and (max-width: 1300px) {
+    .dark_glass {
+        width: 98%;
+        height: 98%;
+        object-fit: cover;
+        /* ensures images maintain aspect ratio */
+    }
+}
+
+/* Media query for screen width more than 1250px and height less than 680px */
+@media screen and (min-width: 1251px) and (max-height: 680px) {
+    body {
+        overflow: auto;
+        /* Allows scrolling when necessary */
+    }
+}
+
+/* Media query for screen width between 801px and 1250px and height less than 725px */
+@media screen and (min-width: 801px) and (max-width: 1250px) and (max-height: 725px) {
+    body {
+        overflow: auto;
+        /* Allows scrolling when necessary */
+    }
+}
+=======
+>>>>>>> origin/master
