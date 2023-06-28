@@ -558,7 +558,7 @@ function updatePercentage() {
         document.getElementById("cropmeter5").src = orange;
         document.getElementById("fuelmeter5").src = orange;
     }
-    if (percentageTimePassed == 0) {
+    if (percentageTimePassed <= 0) {
         document.getElementById("cropmeter5").src = red;
         document.getElementById("fuelmeter5").src = red;
     }
