@@ -130,7 +130,6 @@ body {
     position: relative;  /* Add relative position */
 }
 
-/* The "rules" div is hidden by default */
 #rules {
     position: absolute;
     top: 100%;
@@ -141,9 +140,9 @@ body {
     display: none;
     width: 90%;  /* Full width */
     z-index: 200;
+    overflow: auto;
 }
 
-/* Show "rules" div when hovering over "name" div */
 #name:hover #rules {
     display: block;
 }
@@ -151,11 +150,14 @@ body {
 .regle {
     margin: 0;
     padding: 0;
-    font-size: 1rem;
+    font-size: clamp(12px, 1vw, 1rem);
     font-weight: 400;
     line-height: 1.5;
     color: var(--clr-text);
     text-align: left;
+    overflow-wrap: break-word;
+    word-wrap: break-word; 
+    white-space: normal; 
 }
 
 /* LIGHT_DARK AREA */
