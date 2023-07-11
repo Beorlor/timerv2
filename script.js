@@ -512,7 +512,7 @@ function performCalculations(totalGold, hypixelPrices) {
 
     //production variable to display
     document.getElementById("production-num1").innerText = (nb_of_compost_MD_per_refill / time_in_hours);
-    document.getElementById("production-num2").innerText = nb_of_compost_MD_per_refill;
+    document.getElementById("production-num2").innerText = nb_of_compost_MD_per_refill.toFixed(2);
     document.getElementById("production-num3").innerText = Math.round((gold_per_refill / time_in_hours) / 1000) + " K";
     document.getElementById("production-num4").innerText = (gold_per_refill / 1000000).toFixed(2) + " M";
     //the fith is in timer
